@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,13 @@ Route::controller(ProductController::class)->group(function(){
     Route::put('/products/{product}', 'update')->name('products.update');
     Route::delete('/products/{product}', 'destroy')->name('products.destroy');
 
+});
+
+Route::controller(LoginController::class)->group(function(){
+
+    Route::get('/account/login', 'index')->name('account.login');
+    Route::post('/account/authenticate', 'authenticate')->name('account.authenticate');
+    Route::get('/account/register', 'register')->name('account.register');
+    Route::post('/account/processRegister', 'processRegister')->name('account.processRegister');
+    
 });

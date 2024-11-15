@@ -54,22 +54,73 @@
         margin-left: -20px;
         margin-right: -20px;
       }
+      
+      .sidebar {
+        height: 100vh;
+        background-color: #343a40;
+        color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+      }
+      .sidebar.hide {
+        transform: translateX(-100%);
+      }
+      .sidebar a {
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+      }
+      .sidebar a:hover {
+        background-color: #575757;
+      }
+      
+      .sidebar .logout {
+        margin-top: 270px; 
+      }
+      .content {
+        margin-left: 270px;
+        transition: margin-left 0.3s ease;
+      }
+      .content.hide {
+        margin-left: 0;
+      }
+      .toggle-sidebar {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 999;
+        background-color: #343a40;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
-        <div class="bg-dark">
-            <h1 class="text-white text-center">MIDWAY</h1> 
-        </div>
+    <!-- Button to Toggle Sidebar -->
+    <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
 
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h3 class="text-center mb-4 mt-5">Admin Panel</h3>
+        <a href="{{ route('products.index') }}">Accounts</a>
+        <a href="{{ route('products.create') }}">Add Product</a>
+        <a href="#" class="logout">Logout</a> <!-- This is now at the bottom -->
+    </div>
+
+    <div class="content" id="content">
         <div class="container my-4 container-bg">
             <div class="header-title">SILOG MEALS</div>
         
             <div class="row justify-content-center mt-3">
-                <div class="col-md-10 d-flex justify-content-end">
-                    <a href="{{ route('products.create') }}" class="btn btn-dark mb-3">Add Product</a>
-                </div>
-            </div>
-            <div class="row justify-content-center">
                 @if(Session::has('success'))
                     <div class="col-md-12">
                         <div class="alert alert-success">
@@ -109,12 +160,20 @@
                 @endif
             </div>
         </div>
-        <script>
-            function deleteProduct(id) {
-                if (confirm("Are you sure you want to delete the product?")) {
-                    document.getElementById("delete-product-form-" + id).submit();
-                }
+    </div>
+
+    <script>
+        // Function to toggle the sidebar visibility
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("hide");
+            document.getElementById("content").classList.toggle("hide");
+        }
+
+        function deleteProduct(id) {
+            if (confirm("Are you sure you want to delete the product?")) {
+                document.getElementById("delete-product-form-" + id).submit();
             }
-        </script>
+        }
+    </script>
   </body>
 </html>

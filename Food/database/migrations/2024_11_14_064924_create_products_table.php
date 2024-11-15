@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateProductsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * 
      *
      * @return void
      */
@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * 
      *
      * @return void
      */
