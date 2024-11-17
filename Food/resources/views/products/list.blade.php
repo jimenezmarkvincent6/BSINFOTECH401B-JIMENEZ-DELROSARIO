@@ -105,15 +105,16 @@
     </style>
   </head>
   <body>
-    <!-- Button to Toggle Sidebar -->
+    
     <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <h3 class="text-center mb-4 mt-5">Admin Panel</h3>
-        <a href="{{ route('products.index') }}">Accounts</a>
+        <a href="{{ route('products.index') }}">Products</a>
+        <a href="{{ route('account.admin') }}">Accounts</a>
         <a href="{{ route('products.create') }}">Add Product</a>
-        <a href="#" class="logout">Logout</a> <!-- This is now at the bottom -->
+        <a href="{{ route('account.logout') }}" class="logout">Logout</a> 
     </div>
 
     <div class="content" id="content">
@@ -163,7 +164,7 @@
     </div>
 
     <script>
-        // Function to toggle the sidebar visibility
+        
         function toggleSidebar() {
             document.getElementById("sidebar").classList.toggle("hide");
             document.getElementById("content").classList.toggle("hide");
